@@ -3,10 +3,10 @@
   <div class="underline"></div>
   <div class="underline"></div>
   <div class="underline"></div>
-  <a onclick="ul(0)">Home</a>
-  <a onclick="ul(1)">Videos</a>
-  <a onclick="ul(2)">Playlists</a>
-  <a href="login.php" onclick="ul(3)">Login</a>
+  <a onclick="ul(0)">Acerca de</a>
+  <a onclick="ul(1)">Quienes somos?</a>
+  <a onclick="ul(2)">Feedback</a>
+  <a href="login.php" onclick="ul(3)">Ingresar/Registrarse</a>
   <!-- <a onclick="ul(4)">Channels</a> -->
 </nav>
 <style>
