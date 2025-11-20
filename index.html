@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooperativa Mi Hogar</title>
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">Cooperativa Nuevo Horizonte</div>
+            <ul>
+                <li><a href="#benefits">Beneficios</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+                <li><a id="userButton" href="/login.html">Login</a></li>
+                <li>
+                    <button id="darkModeToggle">🌙</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Bienvenido a tu nuevo hogar</h1>
+            <p>Un espacio donde la comunidad, el ahorro y la ayuda mutua hacen posible que todos tengan vivienda digna.</p>
+        </div>
+    </section>
+
+    <section id="benefits">
+        <h2 style="text-align:center; margin-bottom:40px;">Beneficios de nuestra cooperativa</h2>
+        <div class="benefits" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="card">
+                <h3>Ahorro compartido</h3>
+                <p>Contribuye a un fondo común y accede a viviendas sin intermediarios.</p>
+            </div>
+            <div class="card">
+                <h3>Proyectos comunitarios</h3>
+                <p>Participa en decisiones y mejoras de la comunidad junto a otros miembros.</p>
+            </div>
+            <div class="card">
+                <h3>Transparencia</h3>
+                <p>Todas las operaciones y fondos son claros y auditables por los socios.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 style="text-align:center; margin-bottom:40px;">Proyectos recientes</h2>
+        <div class="projects" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="card">
+                <h3>Conjunto Las Flores</h3>
+                <p>50 viviendas listas para entrega, con áreas verdes y espacios recreativos.</p>
+            </div>
+            <div class="card">
+                <h3>Torre Nueva Vida</h3>
+                <p>Edificio con 30 departamentos en zona céntrica, con facilidades de financiamiento.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <h2 style="text-align:center; margin-bottom:40px;">Lo que dicen nuestros socios</h2>
+        <div class="testimonials" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="card">
+                <h3>María P.</h3>
+                <p>"Gracias a la cooperativa pude adquirir mi primer departamento sin endeudarme con bancos."</p>
+            </div>
+            <div class="card">
+                <h3>Juan R.</h3>
+                <p>"El ambiente comunitario y la transparencia me hicieron confiar en este proyecto."</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>© 2025 Cooperativa Mi Hogar | <a href="mailto:info@cooperativamihogar.com">info@cooperativamihogar.com</a></p>
+    </footer>
+
+    <script>
+        const toggleButton = document.getElementById('darkModeToggle');
+        toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
+    </script>
+
+    <script src="scripts/index.js"></script>
+
+</body>
+</html>

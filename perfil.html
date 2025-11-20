@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Usuario de Cooperativa</title>
+    <link rel="stylesheet" href="/styles/perfil.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <h2>👥 Mi Perfil de Socio</h2>
+            <div class="user-info" id="userInfo">
+                <div class="info-item casa-highlight">
+                    <div class="info-label casa-label">🏢 Unidad Habitacional</div>
+                    <div class="info-value casa-value" id="casa">Casa Central - Caracas</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Nombre</div>
+                    <div class="info-value" id="nombre"></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Apellido</div>
+                    <div class="info-value" id="apellido"></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Correo Electrónico</div>
+                    <div class="info-value" id="correo"></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Teléfono</div>
+                    <div class="info-value" id="telefono"></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Cédula</div>
+                    <div class="info-value" id="cedula"></div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Dirección</div>
+                    <div class="info-value" id="direccion"></div>
+                </div>
+            </div>
+            <button class="edit-btn" onclick="openEditModal()">✏️ Actualizar Datos</button>
+        </div>
+
+        <div class="main-content">
+            <div class="topnav">
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <button style="border: none; background: none; cursor: pointer;" id="sidebarToggle">↔️</button>
+                    <div class="user-greeting">Bienvenido/a, <span id="userNameTop">Juan Carlos</span> - Socio Activo
+                    </div>
+                </div>
+
+                <!-- Tabs integradas en el topnav -->
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-tab="pagosTab">💰 Pagos</button>
+                    <button class="tab-btn" data-tab="horariosTab">📅 Horarios</button>
+                </div>
+
+                <div class="topnav-actions">
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema">🌙</button>
+                    <button class="logout-btn" onclick="logout()">🚪 Cerrar Sesión</button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="tab-content active" id="pagosTab">
+                    <div class="section">
+                        <div class="header">
+                            <h2>📤 Registrar Aporte</h2>
+                            <div id="estado">
+                                Estado: <span id="estadoPago" class="estado-pago"></span>
+                            </div>
+                        </div>
+                        <form id="aportesForm">
+                            <div class="form-group">
+                                <label for="periodo">Período:</label>
+                                <select id="periodo" required></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="monto">Monto del Aporte:</label>
+                                <input type="number" id="monto" step="0.01" placeholder="Ej: 50.00" required min="0.01"
+                                    max="1000000">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Comprobante de Pago:</label>
+                                <div class="upload-area" id="uploadArea">
+                                    <p>📁 Arrastra tu comprobante aquí o haz clic para seleccionar</p>
+                                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">Formatos permitidos:
+                                        JPG,
+                                        PNG, PDF (Máx. 5MB)</p>
+                                    <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.pdf"
+                                        style="display: none;">
+                                </div>
+                                <div id="filePreview" style="margin-top: 15px;"></div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success">📤 Registrar Aporte</button>
+                        </form>
+                    </div>
+                    <div class="section">
+                        <h2>💰 Historial de Aportes</h2>
+                        <div class="table-container">
+                            <table id="paymentsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Semana</th>
+                                        <th>Monto</th>
+                                        <th>Fecha</th>
+                                        <th>Descargar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="paymentsBody">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="horariosTab">
+                    <div class="card">
+
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <svg class="icon-lg text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12,6 12,12 16,14"></polyline>
+                                </svg>
+                                Registro de Horas Semanales
+                            </h2>
+                            <p class="card-description">
+                                Cada socio debe cumplir <strong class="text-white font-medium">21 horas
+                                    semanales</strong>.
+                                Si no
+                                completas las horas, deberás registrar el motivo y seleccionar una acción.
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="section" style="margin-top:1rem;">
+                        <form id="horasForm" class="space-y-6">
+                            <div class="grid grid-md-2">
+                                <div class="form-group">
+                                    <label for="semana" class="form-label">Semana</label>
+                                    <select id="semana" required class="form-select">
+                                        <option value="">Seleccionar semana</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="horasTrabajadas" class="form-label">Horas trabajadas</label>
+                                    <input id="horasTrabajadas" type="number" min="0" max="100" placeholder="Ej: 21"
+                                        class="form-input" required />
+                                    <div id="horasStatus" class="text-sm hidden"></div>
+                                </div>
+                            </div>
+                            <div id="alertaHoras" class="hidden alert alert-warning">
+                                <svg class="icon mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.694-.833-2.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z">
+                                    </path>
+                                </svg>
+                                <span id="alertaTexto"></span>
+                            </div>
+                            <div id="seccionJustificacion" class="hidden space-y-4"
+                                style="padding: 1rem; background-color: #f9fafb; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
+                                <div class="form-group">
+                                    <label for="motivo" class="form-label">Motivo de las horas faltantes</label>
+                                    <textarea id="motivo" placeholder="Explica el motivo de las horas faltantes..."
+                                        class="form-textarea"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Acción a tomar</label>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input type="radio" id="exoneracion" name="accion" value="exoneracion">
+                                            <label for="exoneracion">Solicitar Exoneración</label>
+                                        </div>
+                                        <div class="radio-item">
+                                            <input type="radio" id="pago" name="accion" value="pago">
+                                            <label for="pago">Registrar Pago Compensatorio</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="montoPago" class="hidden alert alert-info">
+                                    <div>
+                                        <label class="text-sm font-medium" style="color: #1e40af;">Monto compensatorio
+                                            calculado</label>
+                                        <div id="montoTotal" class="text-2xl font-bold" style="color: #1e40af;">$0</div>
+                                        <p id="montoDetalle" class="text-sm" style="color: #1e40af;"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="btn btn-primary btn-full">
+                                <svg class="icon mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12">
+                                    </path>
+                                </svg>
+                                Guardar Registro
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <div id="historialVacio" class="text-center py-8">
+                            <svg class="icon-xl" style="margin: 0 auto 1rem auto; color: #9ca3af;" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12,6 12,12 16,14"></polyline>
+                            </svg>
+                            <p class="text-gray">No hay registros aún. Completa el formulario para ver tu historial.</p>
+                        </div>
+
+                        <div id="tablaHistorial" class="hidden table-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Semana</th>
+                                        <th>Horas</th>
+                                        <th>Faltantes</th>
+                                        <th>Acción</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historialBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditModal()">&times;</span>
+            <h2>✏️ Actualizar Información de Socio</h2>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editNombre">Nombre:</label>
+                    <input type="text" id="editNombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="editApellido">Apellido:</label>
+                    <input type="text" id="editApellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="editCorreo">Correo Electrónico:</label>
+                    <input type="email" id="editCorreo" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDireccion">Dirección:</label>
+                    <input type="text" id="editDireccion" required>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                    <button type="button" class="btn btn-danger" onclick="closeEditModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-success">💾 Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/scripts/perfil.js"></script>
+</body>
+
+</html>

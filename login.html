@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="styles/login.css" />
+</head>
+
+<body>
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form id="formRegister">
+				<input name="nombre" type="text" placeholder="Nombre" required />
+				<input name="apellido" type="text" placeholder="Apellido" required />
+				<input name="telefonos" type="text" placeholder="Telefono" />
+				<input name="correo" type="email" placeholder="Correo" required />
+				<input name="contrasenia" type="password" placeholder="Contrasenia" required />
+				<input name="cedula" type="text" placeholder="Cedula" required />
+				<button type="submit">Registrarse</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form id="formLogin">
+				<input name="cedula" type="text" placeholder="Cedula" required />
+				<input name="contrasenia" type="password" placeholder="Contrasenia" required />
+				<button type="submit">Iniciar Sesion</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-right">
+					<h1>Hola de vuelta!</h1>
+					<p>Ingresa la informacion de tu cuenta aqui e inicia sesion!</p>
+					<button class="ghost" id="signUp">Sign Up</button>
+				</div>
+				<div class="overlay-panel overlay-left">
+					<h1>Hola!</h1>
+					<p>Ingresa tus datos y crea tu cuenta ya!</p>
+					<button class="ghost" id="signIn">Sign In</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="scripts/login.js"></script>
+</body>
+
+</html>
